@@ -1,7 +1,7 @@
 const xrpl = require('xrpl');
 const Wallet = xrpl.Wallet;
 const Client = xrpl.Client;
-const NFTokenMint = xrpl.NFTokenMint;
+const NFTokenMintFlags = xrpl.NFTokenMintFlags;
 const convertStringToHex = xrpl.convertStringToHex;
 
 async function mintNFT() {
@@ -18,7 +18,9 @@ async function mintNFT() {
             Account: wallet.classicAddress,
             NFTokenTaxon: 1,
             TransactionType: "NFTokenMint",
-            URI: convertStringToHex("sumit")
+            URI: convertStringToHex("sumit"),
+            Flags:NFTokenMintFlags.tfTransferable
+            
         };
 
         let signedTrx = wallet.sign(nftMint);

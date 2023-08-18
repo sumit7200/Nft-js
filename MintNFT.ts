@@ -1,4 +1,4 @@
-import{Wallet, Client, NFTokenMint, convertStringToHex} from 'xrpl';
+import{Wallet, Client, NFTokenMint, convertStringToHex, NFTokenMintFlags} from 'xrpl';
 
 
 async function mintNFT() {
@@ -14,7 +14,8 @@ try{
         Account: wallet.classicAddress,
         NFTokenTaxon: 1,
         TransactionType: "NFTokenMint",
-        URI:convertStringToHex("sumit")
+        URI:convertStringToHex("sumit"),
+        Flags: NFTokenMintFlags.tfTransferable
 
     }
     let signedTrx = wallet.sign(nftMint);

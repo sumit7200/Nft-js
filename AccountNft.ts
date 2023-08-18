@@ -1,4 +1,4 @@
-import{Wallet, Client, NFTokenMint, convertStringToHex,AccountNFTsRequest,parseNFTokenID} from 'xrpl';
+import{Wallet, Client, NFTokenMint, convertStringToHex, AccountNFTsRequest,parseNFTokenID } from 'xrpl';
 
 
 async function mintNFT() {
@@ -14,8 +14,20 @@ try{
         command:'account_nfts',
     }
 
+
+
     let accNftResponse = await client.request(AccountNFTsRequest);
     console.log(accNftResponse);
+    
+    console.log(accNftResponse.result.account_nfts);
+
+
+    accNftResponse.result.account_nfts.forEach(nft =>{
+        let parsedNftokenID = parseNFTokenID(nft.NFTokenID)
+        console.log(parseNFTokenID);
+    })
+
+
     let parsedNftokenID = parseNFTokenID(accNftResponse.result.account_nfts[0].NFTokenID)
 
     console.log(parsedNftokenID)
